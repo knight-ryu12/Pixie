@@ -82,10 +82,9 @@ public class SQL {
             ps.setString(1, channelName);
             ResultSet rs = ps.executeQuery();
             if(rs.next())
-                Greet = rs.getString("msg");
+                Greet = rs.getString("Message");
         } catch (SQLException e) {
             e.printStackTrace();
-            Greet = "Unknown";
         } finally {
             close(connection);
         }
