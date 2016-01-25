@@ -13,6 +13,7 @@ public class Greet extends ListenerAdapter {
     public void onJoin(JoinEvent event) {
         if (event.getUser().getNick().equals(event.getBot().getNick())) {
         } else {
+            greetMsg = Sqlhandler.getGreetMessage(event.getChannel().getName());
             event.getUser().send().notice(greetMsg);
         }
     }
