@@ -14,7 +14,7 @@ public class Greet extends ListenerAdapter {
         if (event.getUser().getNick().equals(event.getBot().getNick())) {
         } else {
             greetMsg = Sqlhandler.getGreetMessage(event.getChannel().getName());
-            if(greetMsg.equals(null)) {
+            if(greetMsg.equals("")) {
                 event.getUser().send().notice("Welcome to " + event.getChannel().getName() + "!");
             } else {
                 event.getUser().send().notice(greetMsg);
