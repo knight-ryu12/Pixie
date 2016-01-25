@@ -14,17 +14,22 @@ public class Greet extends ListenerAdapter {
         if (event.getUser().getNick().equals(event.getBot().getNick())) {
         } else {
             greetMsg = Sqlhandler.getGreetMessage(event.getChannel().getName());
-            event.getUser().send().notice(greetMsg);
+            if(greetMsg.equals("")) {
+                event.getUser().send().notice("Welcome to " + event.getChannel().getName() + "!");
+            } else {
+                event.getUser().send().notice(greetMsg);
+            }
+
         }
     }
     public void onMessage(MessageEvent event) {
         if(event.getMessage().startsWith(PREFIX + "SetChannelGreet")) {
             if (event.getMessage().length() > 16) {
                 Args = event.getMessage().split(" "); //TODO: make Args detection (How many of args)
-                if (Sqlhandler.getGreetMessage(event.getChannel().getName()).equals(null)) {
-                    Sqlhandler.addGreetMessage(Args[1],Args[2]);
-                } else {
+                if (!Sqlhandler.getGreetMessage(event.getChannel().getName()).equals("")) {
                     Sqlhandler.setGreetMessage(Args[1],Args[2]);
+                } else {
+                    Sqlhandler.addGreetMessage(Args[1],Args[2]);
                 }
             } else {
                 event.getUser().send().notice("Usage: " + PREFIX + "SetChannelGreet "+ "<channel> <Message>");

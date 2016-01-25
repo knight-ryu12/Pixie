@@ -73,7 +73,7 @@ public class SQL {
     }
     public String getGreetMessage(String channelName) {
         Connection connection = null;
-        String Greet = null;
+        String Greet = "";
         try {
             connection = open();
             PreparedStatement ps = connection.prepareStatement(
