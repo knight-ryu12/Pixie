@@ -26,7 +26,7 @@ public class Greet extends ListenerAdapter {
         if(event.getMessage().startsWith(PREFIX + "SetChannelGreet")) {
             if (event.getMessage().length() > 16) {
                 Args = event.getMessage().split(" "); //TODO: make Args detection (How many of args)
-                if (!Sqlhandler.getGreetMessage(event.getChannel().getName()).equals(null)) {
+                if (!Sqlhandler.getGreetMessage(event.getChannel().getName()).equals("")) {
                     Sqlhandler.setGreetMessage(Args[1],Args[2]);
                 } else {
                     Sqlhandler.addGreetMessage(Args[1],Args[2]);
