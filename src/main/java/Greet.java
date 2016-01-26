@@ -6,13 +6,13 @@ import org.pircbotx.hooks.events.MessageEvent;
  * Created by chroma on 16/01/24.
  */
 public class Greet extends ListenerAdapter {
-    public String greetMsg;
-    public String PREFIX = "?";
-    String[] Args = new String[4];
-    SQL Sqlhandler = new SQL();
+    private String greetMsg;
+    private String PREFIX = "?";
+    private String[] Args = new String[4];
+    private SQL Sqlhandler = new SQL();
     public void onJoin(JoinEvent event) {
-        if (event.getUser().getNick().equals(event.getBot().getNick())) {
-        } else {
+        if (!event.getUser().getNick().equals(event.getBot().getNick())) {
+
             greetMsg = Sqlhandler.getGreetMessage(event.getChannel().getName());
             if(greetMsg.equals("")) {
                 event.getUser().send().notice("Welcome to " + event.getChannel().getName() + "!");
@@ -23,7 +23,7 @@ public class Greet extends ListenerAdapter {
         }
     }
     public void onMessage(MessageEvent event) {
-        if(Sqlhandler)
+        //if(Sqlhandler)
         if(event.getMessage().startsWith(PREFIX + "SetChannelGreet")) {
             if (event.getMessage().length() > 16) {
                 Args = event.getMessage().split(" "); //TODO: make Args detection (How many of args)
