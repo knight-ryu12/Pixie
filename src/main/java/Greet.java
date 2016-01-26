@@ -23,6 +23,7 @@ public class Greet extends ListenerAdapter {
         }
     }
     public void onMessage(MessageEvent event) {
+        if(Sqlhandler)
         if(event.getMessage().startsWith(PREFIX + "SetChannelGreet")) {
             if (event.getMessage().length() > 16) {
                 Args = event.getMessage().split(" "); //TODO: make Args detection (How many of args)

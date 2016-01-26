@@ -11,5 +11,8 @@ public class General extends ListenerAdapter {
             event.getUser().send().notice("HEY! I am " + event.getBot().getNick() + "!");
             event.getUser().send().notice("registered command are: SetChannelGreet");
         }
+        if(event.getMessage().startsWith(PREFIX + "join")) {
+
+        }
     }
 }
